@@ -3,8 +3,6 @@ Miniflux - Minimalist News Reader
 
 Miniflux is a minimalist and web-based RSS reader.
 
-Note: **This version of Miniflux is not maintained anymore** (You should upgrade to Miniflux 2).
-
 Features
 --------
 
@@ -33,18 +31,18 @@ Features
 Documentation
 -------------
 
-- [ChangeLog](https://github.com/miniflux/miniflux-legacy/blob/master/ChangeLog)
-- [Installation and Requirements](https://github.com/miniflux/miniflux-legacy/blob/master/docs/installation.markdown)
-- [Upgrade to a new version](https://github.com/miniflux/miniflux-legacy/blob/master/docs/upgrade.markdown)
-- [Cronjob](https://github.com/miniflux/miniflux-legacy/blob/master/docs/cronjob.markdown)
-- [Advanced configuration](https://github.com/miniflux/miniflux-legacy/blob/master/docs/config.markdown)
-- [Full article download](https://github.com/miniflux/miniflux-legacy/blob/master/docs/full-article-download.markdown)
-- [Translations](https://github.com/miniflux/miniflux-legacy/blob/master/docs/translations.markdown)
-- [Themes](https://github.com/miniflux/miniflux-legacy/blob/master/docs/themes.markdown)
-- [Json-RPC API](https://github.com/miniflux/miniflux-legacy/blob/master/docs/json-rpc-api.markdown)
-- [Fever API](https://github.com/miniflux/miniflux-legacy/blob/master/docs/fever.markdown)
-- [Run Miniflux with Docker](https://github.com/miniflux/miniflux-legacy/blob/master/docs/docker.markdown)
-- [FAQ](https://github.com/miniflux/miniflux-legacy/blob/master/docs/faq.markdown)
+- [ChangeLog](https://github.com/denfil/miniflux-php/blob/master/ChangeLog)
+- [Installation and Requirements](https://github.com/denfil/miniflux-php/blob/master/docs/installation.markdown)
+- [Upgrade to a new version](https://github.com/denfil/miniflux-php/blob/master/docs/upgrade.markdown)
+- [Cronjob](https://github.com/denfil/miniflux-php/blob/master/docs/cronjob.markdown)
+- [Advanced configuration](https://github.com/denfil/miniflux-php/blob/master/docs/config.markdown)
+- [Full article download](https://github.com/denfil/miniflux-php/blob/master/docs/full-article-download.markdown)
+- [Translations](https://github.com/denfil/miniflux-php/blob/master/docs/translations.markdown)
+- [Themes](https://github.com/denfil/miniflux-php/blob/master/docs/themes.markdown)
+- [Json-RPC API](https://github.com/denfil/miniflux-php/blob/master/docs/json-rpc-api.markdown)
+- [Fever API](https://github.com/denfil/miniflux-php/blob/master/docs/fever.markdown)
+- [Run Miniflux with Docker](https://github.com/denfil/miniflux-php/blob/master/docs/docker.markdown)
+- [FAQ](https://github.com/denfil/miniflux-php/blob/master/docs/faq.markdown)
 
 License
 -------
@@ -54,6 +52,7 @@ License
 Authors
 -------
 
+- Author: Denis Filimonov
 - Original author: Frédéric Guillot
-- [List of contributors](https://github.com/miniflux/miniflux-legacy/graphs/contributors)
+- [List of contributors](https://github.com/denfil/miniflux-php/graphs/contributors)
 
