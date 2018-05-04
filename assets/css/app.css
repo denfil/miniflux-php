@@ -804,6 +804,94 @@ ul.item-infos .bookmark-icon {
     height: 16px;
 }
 
+.item-tags {
+    margin-top: 10px;
+    font-size: 70%;
+    color: #aaa;
+}
+
+.tags-suggestion {
+    font-size: 70%;
+}
+
+.tags-pseudo-link {
+    color: #666;
+    cursor: pointer;
+}
+
+.tags-pseudo-link:hover {
+    text-decoration: underline;
+}
+
+.tags-link-edit {
+    display: inline-block;
+    margin-right: 5px;
+    white-space: nowrap;
+}
+
+.tag-list {
+    display: inline-block;
+}
+
+.tag-list ul,
+.tag-list li {
+    margin: 0;
+    list-style: none;
+    display: inline-block;
+}
+
+.tag-list li:after {
+    content: ", ";
+}
+
+.tag-list li:last-child:after {
+    content: "";
+}
+
+.tag-list li > a {
+    color: #aaa;
+    white-space: nowrap;
+}
+
+.tag-list > div {
+    display: inline-block;
+    background-color: #eee;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    padding: 3px 5px;
+    margin-right: 3px;
+    margin-bottom: 3px;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.item-tag-remove {
+    margin-left: 2px;
+    cursor: pointer;
+}
+
+.item-tag-remove:hover {
+    color: #d00;
+}
+
+.item-tag-remove:before {
+    content: "✘";
+}
+
+.item-tag-add {
+    display: none;
+    white-space: nowrap;
+}
+
+.item-tag-add input {
+    width: 150px;
+    margin: 0;
+}
+
+.tags-link-cancel {
+    margin-left: 3px;
+}
+
 /* other pages */
 section li {
     margin-left: 15px;

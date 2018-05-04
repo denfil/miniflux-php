@@ -4,6 +4,7 @@ namespace Miniflux\Model\Item;
 
 use PicoDb\Database;
 use Miniflux\Model\Group;
+use Miniflux\Model\Tag;
 use Miniflux\Handler;
 use Miniflux\Helper;
 use PicoFeed\Parser\Parser;
@@ -159,11 +160,15 @@ function get_item_id_from_checksum($feed_id, $checksum)
 
 function get_item($user_id, $item_id)
 {
-    return Database::getInstance('db')
-        ->table('items')
+    $result = Database::getInstance('db')
+        ->table(TABLE)
         ->eq('user_id', $user_id)
         ->eq('id', $item_id)
         ->findOne();
+    if (!empty($result)) {
+        $result['tags'] = Tag\get_item_tags($user_id, $result['id']);
+    }
+    return $result;
 }
 
 function get_item_nav($user_id, array $item, $status = array(STATUS_UNREAD), $bookmark = array(1, 0), $feed_id = null, $group_id = null)
@@ -230,7 +235,7 @@ function get_item_nav($user_id, array $item, $status = array(STATUS_UNREAD), $bo
 
 function get_items_by_status($user_id, $status, $feed_ids = array(), $offset = null, $limit = null, $order_column = 'updated', $order_direction = 'desc')
 {
-    return Database::getInstance('db')
+    $items = Database::getInstance('db')
         ->table(TABLE)
         ->columns(
             'items.id',
@@ -250,7 +255,7 @@ function get_items_by_status($user_id, $status, $feed_ids = array(), $offset = n
             'feeds.site_url',
             'feeds.title AS feed_title'
         )
-        ->join('feeds', 'id', 'feed_id')
+        ->join(\Miniflux\Model\Feed\TABLE, 'id', 'feed_id')
         ->eq('items.user_id', $user_id)
         ->eq('items.status', $status)
         ->in('items.feed_id', $feed_ids)
@@ -258,6 +263,10 @@ function get_items_by_status($user_id, $status, $feed_ids = array(), $offset = n
         ->offset($offset)
         ->limit($limit)
         ->findAll();
+    if (!empty($items)) {
+        Tag\attach_tags_to_items($user_id, $items);
+    }
+    return $items;
 }
 
 function get_items($user_id, $since_id = null, array $item_ids = array(), $limit = 50)
@@ -282,7 +291,7 @@ function get_items($user_id, $since_id = null, array $item_ids = array(), $limit
             'feeds.site_url',
             'feeds.title AS feed_title'
         )
-        ->join('feeds', 'id', 'feed_id')
+        ->join(\Miniflux\Model\Feed\TABLE, 'id', 'feed_id')
         ->eq('items.user_id', $user_id)
         ->neq('items.status', STATUS_REMOVED)
         ->limit($limit)

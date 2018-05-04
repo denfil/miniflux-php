@@ -89,7 +89,7 @@ function get_feed_groups($feed_id)
 function get_group_id_from_title($user_id, $title)
 {
     return Database::getInstance('db')
-        ->table('groups')
+        ->table(TABLE)
         ->eq('user_id', $user_id)
         ->eq('title', $title)
         ->findOneColumn('id');

@@ -15,3 +15,4 @@
 <link rel="apple-touch-icon" sizes="144x144" href="assets/img/touch-icon-ipad-retina.png">
 
 <link href="<?php echo Miniflux\Helper\css() ?>" rel="stylesheet" media="screen">
+<link href="assets/auto-complete/auto-complete.css" rel="stylesheet" media="screen">

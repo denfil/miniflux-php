@@ -283,4 +283,6 @@ return array(
     'Shaarli tags' => 'Shaarli тэги',
     'Private Bookmarks' => 'Приватные Закладки',
     'mark page as read' => 'отметить страницу как прочитанное',
+    'Edit tags' => 'Редактировать теги',
+    'Press Enter to save.' => 'Нажмите Enter для сохранения.',
 );

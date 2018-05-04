@@ -105,7 +105,7 @@ function get_favicons_by_feed_ids(array $feed_ids)
             'favicons.hash',
             'favicons_feeds.feed_id'
         )
-        ->join('favicons_feeds', 'favicon_id', 'id')
+        ->join(JOIN_TABLE, 'favicon_id', 'id')
         ->in('favicons_feeds.feed_id', $feed_ids)
         ->findAll();
 

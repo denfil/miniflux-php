@@ -4,6 +4,7 @@ namespace Miniflux\Model\ItemFeed;
 
 use Miniflux\Model\Feed;
 use Miniflux\Model\Item;
+use Miniflux\Model\Tag;
 use PicoDb\Database;
 
 function count_items_by_status($user_id, $feed_id)
@@ -45,8 +46,8 @@ function count_items($user_id, $feed_id)
 
 function get_all_items($user_id, $feed_id, $offset = null, $limit = null, $order_column = 'updated', $order_direction = 'desc')
 {
-    return Database::getInstance('db')
-        ->table('items')
+    $items = Database::getInstance('db')
+        ->table(Item\TABLE)
         ->columns(
             'items.id',
             'items.title',
@@ -72,6 +73,10 @@ function get_all_items($user_id, $feed_id, $offset = null, $limit = null, $order
         ->offset($offset)
         ->limit($limit)
         ->findAll();
+    if (!empty($items)) {
+        Tag\attach_tags_to_items($user_id, $items);
+    }
+    return $items;
 }
 
 function change_items_status($user_id, $feed_id, $current_status, $new_status, $before = null)

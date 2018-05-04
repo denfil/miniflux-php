@@ -37,6 +37,7 @@ return array(
     'ee585b658e324609d721bc6f959e85c8' => $baseDir . '/app/models/remember_me.php',
     'fc49fda782025f9f73852265b1fa7760' => $baseDir . '/app/models/group.php',
     '785cebb801997d40232b8337459f1606' => $baseDir . '/app/models/favicon.php',
+    'e7471626caee68a253c18d9ac0c9642b' => $baseDir . '/app/models/tag.php',
     'e348a7661429e81fa0e42efff1ebfe6e' => $baseDir . '/app/validators/config.php',
     '679a0a7c75414c39298328823e0be180' => $baseDir . '/app/validators/feed.php',
     'c9b6df0c6d89508a97bc5c3af8a92707' => $baseDir . '/app/validators/group.php',

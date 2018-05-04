@@ -283,4 +283,6 @@ return array(
     'Shaarli tags' => 'Shaarli Tags',
     // 'Private Bookmarks' => '',
     // 'mark page as read' => '',
+    // 'Edit tags' => '',
+    // 'Press Enter to save.' => '',
 );

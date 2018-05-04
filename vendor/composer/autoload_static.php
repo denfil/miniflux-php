@@ -38,6 +38,7 @@ class ComposerStaticInitf01f1e820750a89e4240525ed7b4810b
         'ee585b658e324609d721bc6f959e85c8' => __DIR__ . '/../..' . '/app/models/remember_me.php',
         'fc49fda782025f9f73852265b1fa7760' => __DIR__ . '/../..' . '/app/models/group.php',
         '785cebb801997d40232b8337459f1606' => __DIR__ . '/../..' . '/app/models/favicon.php',
+        'e7471626caee68a253c18d9ac0c9642b' => __DIR__ . '/../..' . '/app/models/tag.php',
         'e348a7661429e81fa0e42efff1ebfe6e' => __DIR__ . '/../..' . '/app/validators/config.php',
         '679a0a7c75414c39298328823e0be180' => __DIR__ . '/../..' . '/app/validators/feed.php',
         'c9b6df0c6d89508a97bc5c3af8a92707' => __DIR__ . '/../..' . '/app/validators/group.php',

@@ -15,6 +15,9 @@
     if (isset($text)) {
         $params[] = 'text=' . $text;
     }
+    if (isset($tag_id)) {
+        $params[] = 'tag_id=' . $tag_id;
+    }
     $optionals = '';
     if ($params) {
         $optionals = '&amp;' . implode('&amp;', $params);

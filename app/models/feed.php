@@ -17,7 +17,7 @@ function create($user_id, Feed $feed, $etag, $last_modified, $expiration = 0, $r
 {
     $db = Database::getInstance('db');
 
-    if ($db->table('feeds')->eq('user_id', $user_id)->eq('feed_url', $feed->getFeedUrl())->exists()) {
+    if ($db->table(TABLE)->eq('user_id', $user_id)->eq('feed_url', $feed->getFeedUrl())->exists()) {
         return -1;
     }
 
@@ -145,7 +145,7 @@ function update_feed($user_id, $feed_id, array $values)
         }
 
         $result = Database::getInstance('db')
-                ->table('feeds')
+                ->table(TABLE)
                 ->eq('user_id', $user_id)
                 ->eq('id', $feed_id)
                 ->update($feed);

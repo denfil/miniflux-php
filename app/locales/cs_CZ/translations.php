@@ -283,4 +283,6 @@ return array(
     'Shaarli tags' => 'Shaarli štítky',
     'Private Bookmarks' => 'Soukromé záložky',
     // 'mark page as read' => '',
+    // 'Edit tags' => '',
+    // 'Press Enter to save.' => '',
 );

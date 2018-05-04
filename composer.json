@@ -62,6 +62,7 @@
             "app/models/remember_me.php",
             "app/models/group.php",
             "app/models/favicon.php",
+            "app/models/tag.php",
             "app/validators/config.php",
             "app/validators/feed.php",
             "app/validators/group.php",

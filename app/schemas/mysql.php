@@ -5,7 +5,26 @@ namespace Miniflux\Schema;
 use PDO;
 use Miniflux\Helper;
 
-const VERSION = 3;
+const VERSION = 4;
+
+function version_4(PDO $pdo)
+{
+    $pdo->exec("CREATE TABLE `tags` (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        user_id INT NOT NULL,
+        title VARCHAR(255) NOT NULL,
+        FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE,
+        UNIQUE(user_id, title)
+    ) ENGINE=InnoDB CHARSET=utf8");
+
+    $pdo->exec("CREATE TABLE `items_tags` (
+        item_id BIGINT NOT NULL,
+        tag_id INT NOT NULL,
+        PRIMARY KEY(item_id, tag_id),
+        FOREIGN KEY(tag_id) REFERENCES tags(id) ON DELETE CASCADE,
+        FOREIGN KEY(item_id) REFERENCES items(id) ON DELETE CASCADE
+    ) ENGINE=InnoDB CHARSET=utf8");
+}
 
 function version_3(PDO $pdo)
 {
@@ -86,7 +105,7 @@ function version_1(PDO $pdo)
     ) ENGINE=InnoDB CHARSET=utf8");
 
     $pdo->exec("CREATE TABLE `groups` (
-        id INT AUTO_INCREMENT PRIMARY KEY, 
+        id INT AUTO_INCREMENT PRIMARY KEY,
         user_id INT NOT NULL,
         title VARCHAR(255) NOT NULL,
         FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE,

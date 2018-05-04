@@ -27,7 +27,8 @@ $(JS_FILE): assets/js/src/app.js \
 	assets/js/src/feed.js \
 	assets/js/src/item.js \
 	assets/js/src/event.js \
-	assets/js/src/nav.js
+	assets/js/src/nav.js \
+	assets/js/src/tag.js
 	@ yarn install || npm install
 	@ ./node_modules/.bin/jshint assets/js/src/*.js
 	@ cat $^ | node_modules/.bin/uglifyjs - > $@

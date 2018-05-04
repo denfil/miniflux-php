@@ -15,7 +15,7 @@ function download_item_content($user_id, $item_id)
     if (! empty($content)) {
         if (! Helper\config('nocontent')) {
             Database::getInstance('db')
-                ->table('items')
+                ->table(Model\Item\TABLE)
                 ->eq('id', $item['id'])
                 ->save(array('content' => $content));
         }

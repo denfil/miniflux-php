@@ -5,7 +5,26 @@ namespace Miniflux\Schema;
 use PDO;
 use Miniflux\Helper;
 
-const VERSION = 5;
+const VERSION = 6;
+
+function version_6(PDO $pdo)
+{
+    $pdo->exec('CREATE TABLE "tags" (
+        id SERIAL PRIMARY KEY,
+        user_id INTEGER NOT NULL,
+        title VARCHAR(255) NOT NULL,
+        FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE,
+        UNIQUE(user_id, title)
+    )');
+
+    $pdo->exec('CREATE TABLE "items_tags" (
+        item_id BIGINT NOT NULL,
+        tag_id INTEGER NOT NULL,
+        PRIMARY KEY(item_id, tag_id),
+        FOREIGN KEY(tag_id) REFERENCES tags(id) ON DELETE CASCADE,
+        FOREIGN KEY(item_id) REFERENCES items(id) ON DELETE CASCADE
+    )');
+}
 
 function version_5(PDO $pdo)
 {

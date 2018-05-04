@@ -6,6 +6,7 @@
 >
     <head>
         <?php echo Miniflux\Template\load('common/head') ?>
+        <script type="text/javascript" src="assets/auto-complete/auto-complete.min.js" defer></script>
         <script type="text/javascript" src="assets/js/app.min.js?<?php echo filemtime('assets/js/app.min.js') ?>" defer></script>
     </head>
     <body>

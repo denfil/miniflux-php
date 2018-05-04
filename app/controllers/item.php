@@ -246,3 +246,36 @@ Router\get_action('latest-feeds-items', function () {
         'nb_unread_items' => $nb_unread_items
     ));
 });
+
+// Ajax call to add tag to item
+Router\post_action('add-item-tag', function () {
+    $user_id = SessionStorage::getInstance()->getUserId();
+    $item_id = (int)Request\value('item_id');
+    $title = Request\value('tag_title');
+    if ($title) {
+        $title = htmlspecialchars(strip_tags($title), ENT_QUOTES);
+        Model\Tag\add_tag($user_id, $item_id, $title);
+    }
+    $item_tags = Model\Tag\get_item_tags($user_id, $item_id);
+    Response\json(array('tags' => $item_tags));
+});
+
+// Ajax call to remove tag from item
+Router\post_action('remove-item-tag', function () {
+    $user_id = SessionStorage::getInstance()->getUserId();
+    $item_id = (int)Request\value('item_id');
+    $tag_id = (int)Request\value('tag_id');
+    Model\Tag\dissociate_item_tag($user_id, $item_id, $tag_id);
+    $item_tags = Model\Tag\get_item_tags($user_id, $item_id);
+    Response\json(array('tags' => $item_tags));
+});
+
+// Ajax call to search tag
+Router\post_action('search-tag', function () {
+    $user_id = SessionStorage::getInstance()->getUserId();
+    $text = Request\value('text');
+    $tags = empty($text)
+        ? Model\Tag\get_frequent_tags($user_id, 10)
+        : Model\Tag\search_tags($user_id, $text);
+    Response\json($tags);
+});

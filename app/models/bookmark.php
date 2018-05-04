@@ -4,6 +4,7 @@ namespace Miniflux\Model\Bookmark;
 
 use Miniflux\Helper;
 use Miniflux\Model;
+use Miniflux\Model\Tag;
 use PicoDb\Database;
 
 function count_bookmarked_items($user_id, array $feed_ids = array())
@@ -19,7 +20,7 @@ function count_bookmarked_items($user_id, array $feed_ids = array())
 
 function get_bookmarked_items($user_id, $offset = null, $limit = null, array $feed_ids = array())
 {
-    return Database::getInstance('db')
+    $items = Database::getInstance('db')
         ->table(Model\Item\TABLE)
         ->columns(
             'items.id',
@@ -48,6 +49,10 @@ function get_bookmarked_items($user_id, $offset = null, $limit = null, array $fe
         ->offset($offset)
         ->limit($limit)
         ->findAll();
+    if (!empty($items)) {
+        Tag\attach_tags_to_items($user_id, $items);
+    }
+    return $items;
 }
 
 function get_bookmarked_item_ids($user_id)
