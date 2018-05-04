@@ -1,0 +1,77 @@
+{
+    "name": "miniflux/miniflux-legacy",
+    "description": "Minimalist RSS reader",
+    "license": "AGPLv3",
+    "authors": [
+        {
+            "name": "Frédéric Guillot"
+        }
+    ],
+    "config": {
+        "preferred-install": "dist",
+        "optimize-autoloader": true
+    },
+    "require": {
+        "php" : ">=5.3.3",
+        "ext-mbstring" : "*",
+        "fguillot/simple-validator": "v1.0.0",
+        "fguillot/json-rpc": "v1.2.3",
+        "fguillot/picodb": "v1.0.14 ",
+        "miniflux/picofeed": "v0.1.37",
+        "pda/pheanstalk": "v3.1.0",
+        "ircmaxell/password-compat": "^1.0.4"
+    },
+    "require-dev": {
+        "doctrine/instantiator": "1.0.5",
+        "phpdocumentor/reflection-docblock": "2.0.4",
+        "symfony/yaml": "2.8.7",
+        "symfony/stopwatch" : "2.6.13",
+        "phpunit/phpunit" : "4.8.26",
+        "phpunit/phpunit-selenium": "1.4.2",
+        "phpunit/dbunit": "1.4.1"
+    },
+    "autoload": {
+        "files": [
+            "app/helpers/app.php",
+            "app/helpers/config.php",
+            "app/helpers/csrf.php",
+            "app/helpers/favicon.php",
+            "app/helpers/form.php",
+            "app/helpers/template.php",
+            "app/core/database.php",
+            "app/core/translator.php",
+            "app/core/request.php",
+            "app/core/response.php",
+            "app/core/router.php",
+            "app/core/session.php",
+            "app/core/template.php",
+            "app/handlers/scraper.php",
+            "app/handlers/service.php",
+            "app/handlers/feed.php",
+            "app/handlers/item.php",
+            "app/handlers/opml.php",
+            "app/handlers/proxy.php",
+            "app/models/config.php",
+            "app/models/search.php",
+            "app/models/user.php",
+            "app/models/feed.php",
+            "app/models/item.php",
+            "app/models/item_feed.php",
+            "app/models/item_group.php",
+            "app/models/bookmark.php",
+            "app/models/remember_me.php",
+            "app/models/group.php",
+            "app/models/favicon.php",
+            "app/validators/config.php",
+            "app/validators/feed.php",
+            "app/validators/group.php",
+            "app/validators/user.php"
+        ],
+        "classmap": [
+            "vendor/fguillot/json-rpc/src/",
+            "vendor/fguillot/picodb/lib/",
+            "vendor/miniflux/picofeed/lib/",
+            "vendor/fguillot/simple-validator/src/"
+        ]
+    }
+}

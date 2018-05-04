@@ -1,0 +1,110 @@
+Version 1.2.4 (January 4 2017)
+------------------------------
+
+* Add migration script to Miniflux 2
+* Add zh_TW and Polish translation
+* Use search input type instead of text
+* Remove deprecated referrer CSP policy
+* Remove doc links from help page
+* Use Alpine/Nginx/PHP7 for the Docker image
+
+Version 1.2.3 (June 23 2017)
+----------------------------
+
+* Add support for Shaarli
+* Add option for saving bookmarks as "unread" to Pinboard
+* Show feed dates on edit subscription page
+* Handle HTTP header "X-Forwarded-Proto: https"
+* Add subscription option to ignore expire HTTP header
+* Add getItemsByStatus API call
+* Allow the preferences to be configured in the config.php file
+* Update PicoFeed
+* Update translations
+
+Version 1.2.2 (March 7 2017)
+-----------------------------
+
+* Offer the possibility to edit/delete groups
+* Add option to not redirect user when having nothing to read
+* Add hotkey Shift+A to mark all items as read
+* Add Hungarian translation
+* Add config parameter to define base URL
+* Select next unread item when opening current item
+* Show bookmark/read icons for all screen resolutions
+* Supports utf8mb4 encoding for Mysql schema
+* Fix wrong default value in config.default.php
+* Avoid infinite redirects in unread/group page
+* Do not scroll back to the top of the page after touch events
+* Avoid PHP notice when adding invalid feed with bookmarklet
+* Increase default body size to 10MB
+* Update Russian, Serbian translation
+* Reorganize templates into sub-folders
+
+Version 1.2.1 (Jan 18 2017)
+---------------------------
+
+New Features:
+
+* Mysql support
+* Offer the possibility to define different URL for themes folder
+
+Improvements:
+
+* Improve Xpath query for favicons
+* Handle the fact that a user can be removed but have feeds in queue (worker)
+* Do not download items each time for feeds with content scraper enabled
+* Background jobs are not loading user settings properly
+* Allow producer to be executed only for a given user
+* Always use real URL instead XML feed URL
+* Move autoflush calls
+* Display list of groups for each subscription
+* Disable automatically duplicated feeds
+* Increase url field size for Postgres
+* Left swiping also mark item as read on mobile
+* Make import script compatible with Postgresql
+* Allow different limits for users in cronjob
+* Update to PicoFeed v0.1.31
+* Update Czech translations
+* Update zh_CN translations
+* Update ru_RU translations
+
+Bug fixes:
+
+* Marking special group "Unread" as read through Fever API does not work
+
+Version 1.2.0 (Jan 5 2017)
+--------------------------
+
+* Major change to the database structure to have a single database for multiple users
+* Web access token for the cronjob
+* New config parameter to disable web access for the cronjob
+* Debug mode parameter is moved to the config file
+* The console web page have been removed
+* Remove automatic software update from the user interface
+* New API methods (not backward compatible)
+* Fever API tokens are longer than before
+* Always update feed URL to avoid useless redirection for futures requests
+* Add support for Wallabag service
+* Show last parsing error message in user interface
+* Disable automatically a feed after too many failures
+* Add support for Expires and Cache-Control headers (HTTP cache)
+* Flush all user remember me sessions when changing password
+* Update Docker image to Ubuntu 16.04 and PHP 7.0
+* Add Docker compose file
+* Add functional tests (Json-RPC API and Fever API)
+* Add unit tests
+* Minify Javascript and add automated syntax check on the CI
+* Minify CSS
+
+Migration procedure from 1.1.x to 1.2.0:
+
+To import your old database to the new database format, use this script:
+
+    php scripts/migrate-db.php --sqlite-db=/path/to/my/db.sqlite --admin=1
+
+The script is located in the Git repository (not in the archive).
+
+Previous versions
+-----------------
+
+See commit history or news posted on the website.
