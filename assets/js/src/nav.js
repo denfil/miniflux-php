@@ -121,6 +121,12 @@ Miniflux.Nav = (function() {
                 menu.setAttribute("class", "hide");
             }
         },
+        ScrollPageToTop: function () {
+            window.scrollTo(0, 0);
+        },
+        ScrollPageToBottom: function () {
+            window.scrollTo(0, document.body.scrollHeight || document.documentElement.scrollHeight);
+        },
         IsListing: isListing
     };
 

@@ -16,9 +16,9 @@
             <li>
                 <a href="?action=feed-items&amp;feed_id=<?php echo $feed['id'] ?>&amp;order=updated&amp;direction=<?php echo $direction == 'asc' ? 'desc' : 'asc' ?>"><?php echo tne('sort by date %s(%s)%s', '<span class="hide-mobile">', $direction == 'desc' ? t('older first') : t('most recent first'), '</span>') ?></a>
             </li>
-            <li>
+            <!--li>
                 <a href="?action=mark-feed-as-read&amp;feed_id=<?php echo $feed['id'] ?>" data-action="mark-feed-read"><?php echo t('mark all as read') ?></a>
-            </li>
+            </li-->
         </ul>
     </div>
 

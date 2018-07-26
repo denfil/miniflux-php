@@ -100,6 +100,12 @@ Miniflux.Event = (function() {
                        case 'toggle-menu-more':
                             Miniflux.Nav.ToggleMenuMore();
                             break;
+                       case 'scroll-to-top':
+                            Miniflux.Nav.ScrollPageToTop();
+                            break;
+                       case 'scroll-to-bottom':
+                            Miniflux.Nav.ScrollPageToBottom();
+                            break;
                     }
                 }
             };

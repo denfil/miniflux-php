@@ -504,7 +504,6 @@ nav .active a {
     border-bottom: 1px dotted #ccc;
     padding-bottom: 3px;
     font-size: 0.9em;
-    text-align: right;
     padding-top: 30px;
 }
 
@@ -875,6 +874,23 @@ iframe {
 
 #help-layer .panel {
     border: 0;
+}
+
+#scroll-top, #scroll-bottom  {
+    position: fixed;
+    bottom: 60px;
+    right: 30px;
+    z-index: 100;
+    padding: 3px;
+    border: none;
+    border-radius: 20%;
+    background-color: #ddd;
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+#scroll-bottom {
+    bottom: 20px;
 }
 
 .btn-close {
