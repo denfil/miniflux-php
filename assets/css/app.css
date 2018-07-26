@@ -879,9 +879,9 @@ iframe {
 #scroll-top, #scroll-bottom  {
     position: fixed;
     bottom: 60px;
-    right: 30px;
+    right: 15px;
     z-index: 100;
-    padding: 3px;
+    padding: 5px;
     border: none;
     border-radius: 20%;
     background-color: #ddd;
