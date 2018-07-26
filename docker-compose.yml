@@ -1,11 +1,17 @@
-version: '2'
+version: "3"
 services:
-  miniflux:
-    image: miniflux/miniflux:latest
+  web:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
     ports:
-     - "80:80"
+      - "8080:80"
     volumes:
-     - miniflux_data:/var/www/app/data
-volumes:
-  miniflux_data:
-    driver: local
+      - .:/var/www
+  nodejs:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.nodejs
+    volumes:
+      - .:/var/www
+

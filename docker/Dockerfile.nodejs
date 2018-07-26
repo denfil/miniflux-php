@@ -1,0 +1,7 @@
+FROM node:alpine
+
+RUN apk add --no-cache make
+
+VOLUME /var/www
+
+WORKDIR /var/www
