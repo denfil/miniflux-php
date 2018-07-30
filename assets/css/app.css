@@ -876,13 +876,17 @@ iframe {
     border: 0;
 }
 
-#scroll-top, #scroll-bottom  {
+#scroll {
     position: fixed;
-    bottom: 60px;
-    right: 15px;
+    bottom: 0;
+    right: 0;
+    padding: 40px 15px 30px 40px;
     z-index: 100;
+    background: transparent;
+}
+
+#scroll-top, #scroll-bottom {
     padding: 5px;
-    border: none;
     border-radius: 20%;
     background-color: #ddd;
     opacity: 0.7;
@@ -890,7 +894,7 @@ iframe {
 }
 
 #scroll-bottom {
-    bottom: 20px;
+    margin-top: 10px;
 }
 
 .btn-close {

@@ -18,7 +18,9 @@
         </section>
 
         <?php echo Miniflux\Template\load('common/help') ?>
-        <div id="scroll-top" data-action="scroll-to-top">&#9650;</div>
-        <div id="scroll-bottom" data-action="scroll-to-bottom">&#9660;</div>
+        <div id="scroll">
+            <div id="scroll-top" data-action="scroll-to-top">&#9650;</div>
+            <div id="scroll-bottom" data-action="scroll-to-bottom">&#9660;</div>
+        </div>
     </body>
 </html>
