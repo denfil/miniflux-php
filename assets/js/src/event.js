@@ -394,6 +394,19 @@ Miniflux.Event = (function() {
             document.addEventListener('touchmove', touchHandler, false);
             document.addEventListener('touchend', touchHandler, false);
             document.addEventListener('touchcancel', touchHandler, false);
+        },
+        ListenOnlineEvents: function() {
+            var onlineStatusHandler = function () {
+                var listing = document.getElementById("listing");
+                if (window.navigator.onLine) {
+                    listing.classList.remove("offline");
+                } else {
+                    listing.classList.add("offline");
+                }
+            };
+            window.addEventListener("load", onlineStatusHandler);
+            window.addEventListener("online",  onlineStatusHandler);
+            window.addEventListener("offline", onlineStatusHandler);
         }
     };
 })();

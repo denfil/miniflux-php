@@ -555,6 +555,10 @@ nav .active a {
     background-color: #fff;
 }
 
+.offline article {
+    border-color: #f00;
+}
+
 .items article[data-feed-error] {
     background-color: #fcf8e3;
     border-color: #fcf8e3;
