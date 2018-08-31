@@ -15,9 +15,11 @@ class TestItemRegistry implements ItemRegistryInterface
 
     public function __construct(array $items)
     {
-        $this->pdo = new PDO('sqlite::memory:');
-        $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $this->pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+        $options = [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+        ];
+        $this->pdo = new PDO('sqlite::memory:', null, null, $options);
         $this->pdo->exec('CREATE TABLE items (id INTEGER, value TEXT)');
         $query = 'INSERT INTO items (id, value) VALUES (:id, :value)';
         $sth = $this->pdo->prepare($query);
@@ -123,7 +125,6 @@ class CursorPagination
     }
 }
 
-
 $items = [
     ['id' => 1, 'value' => 'i1'],
     ['id' => 2, 'value' => 'i2'],
@@ -134,9 +135,9 @@ $items = [
 $itemsPerPage = 3;
 $cursor = new CursorPagination(new TestItemRegistry($items), $itemsPerPage);
 
-$actual = $cursor->getBefore(6);
-exit;
-
+const NORMAL="\e[0m";
+const RED="\e[1;31m";
+const GREEN="\e[1;32m";
 
 $tests = [
     [0, ['has_prev' => false, 'items' => array_slice($items, 0, $itemsPerPage), 'has_next' => true]],
@@ -149,15 +150,18 @@ $tests = [
 foreach ($tests as $test) {
     [$itemId, $expected] = $test;
     $actual = $cursor->getAfter($itemId);
+    echo "Test getAfter($itemId)\t";
     if ($expected !== $actual) {
-        echo 'getAfter test failed for itemId ' . $itemId
+        echo RED . 'Failure' . NORMAL
+            . "\ngetAfter test failed for itemId " . $itemId
             . "\nexpected: " . var_export($expected, true)
             . "\nactual : " . var_export($actual, true)
             . "\n\n";
         exit;
     }
+    echo GREEN . 'Success' . NORMAL . "\n";
 }
-
+echo "\n";
 $tests = [
     [0, ['has_prev' => false, 'items' => [], 'has_next' => true]],
     [1, ['has_prev' => false, 'items' => [], 'has_next' => true]],
@@ -170,11 +174,14 @@ $tests = [
 foreach ($tests as $test) {
     [$itemId, $expected] = $test;
     $actual = $cursor->getBefore($itemId);
+    echo "Test getBefore($itemId)\t";
     if ($expected !== $actual) {
-        echo 'getBefore test failed for itemId ' . $itemId
+        echo RED . 'Failure' . NORMAL
+            . "\ngetBefore test failed for itemId " . $itemId
             . "\nexpected: " . var_export($expected, true)
             . "\nactual : " . var_export($actual, true)
             . "\n\n";
         exit;
     }
+    echo GREEN . 'Success' . NORMAL . "\n";
 }
