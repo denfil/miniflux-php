@@ -20,6 +20,8 @@ nbproject
 node_modules
 config.php
 package-lock.json
+/rev.txt
+/sha256sum.txt
 !vendor/miniflux/picofeed/lib/PicoFeed/Config/Config.php
 !app/helpers/*
 !app/models/*
