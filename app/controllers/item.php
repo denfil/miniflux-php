@@ -132,6 +132,20 @@ Router\post_action('mark-item-read', function () {
     Response\json(array('Ok'));
 });
 
+// Ajax call to mark items read
+Router\post_action('mark-items-read', function () {
+    $user_id = SessionStorage::getInstance()->getUserId();
+    $ids = Request\value('ids');
+    $item_ids = array();
+    foreach ($ids as $id) {
+        if ($id > 0) {
+            $item_ids[] = (int)$id;
+        }
+    }
+    Model\Item\change_item_ids_status($user_id, $item_ids, Model\Item\STATUS_READ);
+    Response\raw('Ok');
+});
+
 // Ajax call to mark item as removed
 Router\post_action('mark-item-removed', function () {
     $user_id = SessionStorage::getInstance()->getUserId();

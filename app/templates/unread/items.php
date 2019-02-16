@@ -43,7 +43,8 @@
         <?php endforeach ?>
 
         <div id="bottom-menu">
-            <a href="?action=mark-all-read<?php echo $group_id === null ? '' : '&amp;group_id='.$group_id ?>"><?php echo t('mark all as read') ?></a>
+            <!--a href="?action=mark-all-read<?php echo $group_id === null ? '' : '&amp;group_id='.$group_id ?>"><?php echo t('mark all as read') ?></a-->
+            <a href="?action=unread" data-action="mark-page-read"><?php echo t('mark page as read') ?></a>
         </div>
 
         <?php echo Miniflux\Template\load('items/paging', array('menu' => $menu, 'nb_items' => $nb_items, 'items_per_page' => $items_per_page, 'offset' => $offset, 'order' => $order, 'direction' => $direction, 'group_id' => $group_id)) ?>

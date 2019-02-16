@@ -67,6 +67,9 @@ Miniflux.Event = (function() {
                                 Miniflux.Item.MarkAsRead(currentItem);
                             }
                             break;
+                        case 'mark-page-read':
+                            Miniflux.Item.MarkPageAsRead();
+                            break;
                         case 'mark-unread':
                             if (currentItem) {
                                 Miniflux.Item.MarkAsUnread(currentItem);

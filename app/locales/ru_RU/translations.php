@@ -282,4 +282,5 @@ return array(
     'Shaarli secret' => 'Shaarli secret',
     'Shaarli tags' => 'Shaarli тэги',
     'Private Bookmarks' => 'Приватные Закладки',
+    'mark page as read' => 'отметить страницу как прочитанное',
 );

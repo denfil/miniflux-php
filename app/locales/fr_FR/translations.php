@@ -282,4 +282,5 @@ return array(
     'Shaarli secret' => 'Clé secrete de Shaarli',
     'Shaarli tags' => 'Libellés pour les liens Shaarli',
     'Private Bookmarks' => 'Favoris privés',
+    // 'mark page as read' => '',
 );
