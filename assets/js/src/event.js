@@ -69,6 +69,7 @@ Miniflux.Event = (function() {
                             break;
                         case 'mark-page-read':
                             Miniflux.Item.MarkPageAsRead();
+                            Miniflux.Nav.ScrollPageToTop();
                             break;
                         case 'mark-unread':
                             if (currentItem) {
