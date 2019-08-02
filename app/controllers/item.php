@@ -29,6 +29,44 @@ Router\get_action('unread', function () {
     )));
 });
 
+// Display pinned items
+Router\get_action('pinned', function () {
+    $user_id = SessionStorage::getInstance()->getUserId();
+    $offset = Request\int_param('offset', 0);
+    $group_id = Request\int_param('group_id', null);
+    $feed_ids = array();
+
+    if ($group_id !== null) {
+        $feed_ids = Model\Group\get_feed_ids_by_group($group_id);
+    }
+
+    $nb_items = Model\Item\count_pinned_items($user_id, $feed_ids);
+    $items = Model\Item\get_pinned_items(
+        $user_id,
+        $offset,
+        Helper\config('items_per_page'),
+        $feed_ids
+    );
+
+    Response\html(Template\layout('pinned/items', array(
+        'favicons' => Model\Favicon\get_items_favicons($items),
+        'original_marks_read' => Helper\config('original_marks_read'),
+        'order' => '',
+        'direction' => '',
+        'display_mode' => Helper\config('items_display_mode'),
+        'item_title_link' => Helper\config('item_title_link'),
+        'group_id' => $group_id,
+        'items' => $items,
+        'nb_items' => $nb_items,
+        'offset' => $offset,
+        'items_per_page' => Helper\config('items_per_page'),
+        'nothing_to_read' => Request\int_param('nothing_to_read'),
+        'menu' => 'pinned',
+        'groups' => Model\Group\get_all($user_id),
+        'title' => t('Pinned').' ('.$nb_items.')'
+    )));
+});
+
 // Show item
 Router\get_action('show', function () {
     $user_id = SessionStorage::getInstance()->getUserId();
@@ -244,5 +282,17 @@ Router\get_action('latest-feeds-items', function () {
     Response\json(array(
         'last_items_timestamps' => $items_timestamps,
         'nb_unread_items' => $nb_unread_items
+    ));
+});
+
+// Ajax call to pin or unpin item
+Router\post_action('pin', function () {
+    $user_id = SessionStorage::getInstance()->getUserId();
+    $item_id = Request\int_param('id');
+    $value = Request\int_param('value');
+    Response\json(array(
+        'id' => $item_id,
+        'value' => $value,
+        'result' => Model\Item\set_pinned_flag($user_id, $item_id, $value),
     ));
 });

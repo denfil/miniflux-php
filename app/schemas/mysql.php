@@ -5,7 +5,12 @@ namespace Miniflux\Schema;
 use PDO;
 use Miniflux\Helper;
 
-const VERSION = 3;
+const VERSION = 4;
+
+function version_4(PDO $pdo)
+{
+    $pdo->exec('ALTER TABLE items ADD COLUMN pinned TINYINT(1) DEFAULT 0');
+}
 
 function version_3(PDO $pdo)
 {

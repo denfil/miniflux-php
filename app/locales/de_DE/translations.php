@@ -283,4 +283,9 @@ return array(
     'Shaarli tags' => 'Shaarli Tags',
     // 'Private Bookmarks' => '',
     // 'mark page as read' => '',
+    // 'pin' => '',
+    // 'unpin' => '',
+    // 'pinned' => '',
+    // 'Pinned' => '',
+    // 'No pinned items' => '',
 );

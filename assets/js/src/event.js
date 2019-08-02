@@ -86,6 +86,11 @@ Miniflux.Event = (function() {
                                 Miniflux.Item.SwitchBookmark(currentItem);
                             }
                             break;
+                        case 'pin':
+                            if (currentItem) {
+                                Miniflux.Item.SwitchPinned(currentItem);
+                            }
+                            break;
                         case 'download-item':
                             if (currentItem) {
                                 Miniflux.Item.DownloadContent(currentItem);

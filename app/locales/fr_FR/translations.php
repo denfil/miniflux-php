@@ -283,4 +283,10 @@ return array(
     'Shaarli tags' => 'Libellés pour les liens Shaarli',
     'Private Bookmarks' => 'Favoris privés',
     // 'mark page as read' => '',
+    // 'pin' => '',
+    // 'unpin' => '',
+    // 'pinned' => '',
+    // 'Pinned' => '',
+    // 'No pinned items' => '',
+    // 'No pinned items' => '',
 );

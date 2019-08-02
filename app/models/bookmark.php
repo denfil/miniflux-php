@@ -30,6 +30,7 @@ function get_bookmarked_items($user_id, $offset = null, $limit = null, array $fe
             'items.enclosure_url',
             'items.enclosure_type',
             'items.bookmark',
+            'items.pinned',
             'items.status',
             'items.content',
             'items.feed_id',

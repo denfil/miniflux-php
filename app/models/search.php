@@ -28,6 +28,7 @@ function get_all_items($user_id, $text, $offset = null, $limit = null)
             'items.enclosure_url',
             'items.enclosure_type',
             'items.bookmark',
+            'items.pinned',
             'items.feed_id',
             'items.status',
             'items.content',

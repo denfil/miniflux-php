@@ -4,6 +4,7 @@
     data-item-id="<?php echo $item['id'] ?>"
     data-item-status="<?php echo $item['status'] ?>"
     data-item-bookmark="<?php echo $item['bookmark'] ?>"
+    data-item-pinned="<?php echo $item['pinned'] ?>"
     <?php echo $hide ? 'data-hide="true"' : '' ?>
     >
     <h2 <?php echo Miniflux\Helper\rtl($item) ?>>
@@ -14,6 +15,13 @@
                 title="<?php echo ($item['bookmark']) ? t('remove bookmark') : t('bookmark') ?>"
                 data-action="bookmark"
                 data-reverse-title="<?php echo ($item['bookmark']) ? t('bookmark') : t('remove bookmark') ?>"
+            ></a>
+            <a
+                class="pin-icon"
+                href="?action=pin&amp;value=<?php echo (int)!$item['pinned'] ?>&amp;id=<?php echo $item['id'] ?>&amp;offset=<?php echo $offset ?>&amp;redirect=<?php echo $menu ?>&amp;feed_id=<?php echo $item['feed_id'] ?>"
+                title="<?php echo $item['pinned'] ? t('unpin') : t('pin') ?>"
+                data-action="pin"
+                data-reverse-title="<?php echo ($item['pinned']) ? t('pin') : t('unpin') ?>"
             ></a>
             <a
                 class="read-icon"

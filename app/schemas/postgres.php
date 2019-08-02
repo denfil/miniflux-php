@@ -5,7 +5,12 @@ namespace Miniflux\Schema;
 use PDO;
 use Miniflux\Helper;
 
-const VERSION = 5;
+const VERSION = 6;
+
+function version_6(PDO $pdo)
+{
+    $pdo->exec('ALTER TABLE items ADD COLUMN pinned BOOLEAN DEFAULT FALSE');
+}
 
 function version_5(PDO $pdo)
 {

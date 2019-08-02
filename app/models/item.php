@@ -2,10 +2,11 @@
 
 namespace Miniflux\Model\Item;
 
-use PicoDb\Database;
-use Miniflux\Model\Group;
 use Miniflux\Handler;
 use Miniflux\Helper;
+use Miniflux\Model;
+use Miniflux\Model\Group;
+use PicoDb\Database;
 use PicoFeed\Parser\Parser;
 
 const TABLE          = 'items';
@@ -230,7 +231,7 @@ function get_item_nav($user_id, array $item, $status = array(STATUS_UNREAD), $bo
 
 function get_items_by_status($user_id, $status, $feed_ids = array(), $offset = null, $limit = null, $order_column = 'updated', $order_direction = 'desc')
 {
-    return Database::getInstance('db')
+    $query = Database::getInstance('db')
         ->table(TABLE)
         ->columns(
             'items.id',
@@ -241,6 +242,7 @@ function get_items_by_status($user_id, $status, $feed_ids = array(), $offset = n
             'items.enclosure_url',
             'items.enclosure_type',
             'items.bookmark',
+            'items.pinned',
             'items.feed_id',
             'items.status',
             'items.content',
@@ -256,8 +258,11 @@ function get_items_by_status($user_id, $status, $feed_ids = array(), $offset = n
         ->in('items.feed_id', $feed_ids)
         ->orderBy($order_column, $order_direction)
         ->offset($offset)
-        ->limit($limit)
-        ->findAll();
+        ->limit($limit);
+    if ($status === STATUS_UNREAD) {
+        $query->eq('items.pinned', 0);
+    }
+    return $query->findAll();
 }
 
 function get_items($user_id, $since_id = null, array $item_ids = array(), $limit = 50)
@@ -273,6 +278,7 @@ function get_items($user_id, $since_id = null, array $item_ids = array(), $limit
             'items.enclosure_url',
             'items.enclosure_type',
             'items.bookmark',
+            'items.pinned',
             'items.feed_id',
             'items.status',
             'items.content',
@@ -339,8 +345,14 @@ function count_by_status($user_id, $status, $feed_ids = array())
         ->in('feed_id', $feed_ids);
 
     if (is_array($status)) {
+        if (in_array(STATUS_UNREAD, $status)) {
+            $query->eq('pinned', 0);
+        }
         $query->in('status', $status);
     } else {
+        if ($status === STATUS_UNREAD) {
+            $query->eq('pinned', 0);
+        }
         $query->eq('status', $status);
     }
 
@@ -382,4 +394,58 @@ function autoflush_unread($user_id)
             ->lt('updated', strtotime('-'.$autoflush.'day'))
             ->save(array('status' => STATUS_REMOVED, 'content' => ''));
     }
+}
+
+function get_pinned_items($user_id, $offset = null, $limit = null, array $feed_ids = array())
+{
+    return Database::getInstance('db')
+        ->table(TABLE)
+        ->columns(
+            'items.id',
+            'items.checksum',
+            'items.title',
+            'items.updated',
+            'items.url',
+            'items.enclosure_url',
+            'items.enclosure_type',
+            'items.bookmark',
+            'items.pinned',
+            'items.status',
+            'items.content',
+            'items.feed_id',
+            'items.language',
+            'items.rtl',
+            'items.author',
+            'feeds.site_url',
+            'feeds.title AS feed_title'
+        )
+        ->join(Model\Feed\TABLE, 'id', 'feed_id')
+        ->eq('items.user_id', $user_id)
+        ->in('items.feed_id', $feed_ids)
+        ->neq('items.status', STATUS_REMOVED)
+        ->eq('items.pinned', 1)
+        ->orderBy('items.updated', Helper\config('items_sorting_direction'))
+        ->offset($offset)
+        ->limit($limit)
+        ->findAll();
+}
+
+function count_pinned_items($user_id, array $feed_ids = array())
+{
+    return Database::getInstance('db')
+        ->table(TABLE)
+        ->eq('pinned', 1)
+        ->eq('user_id', $user_id)
+        ->in('feed_id', $feed_ids)
+        ->in('status', array(STATUS_READ, STATUS_UNREAD))
+        ->count();
+}
+
+function set_pinned_flag($user_id, $item_id, $value)
+{
+    return Database::getInstance('db')
+        ->table(TABLE)
+        ->eq('user_id', $user_id)
+        ->eq('id', $item_id)
+        ->update(array('pinned' => (int) $value));
 }

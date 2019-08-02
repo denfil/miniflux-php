@@ -5,6 +5,9 @@
             <li<?php echo isset($menu) && $menu === 'unread' ? ' class="active"' : '' ?>>
                 <a href="?action=unread"><?php echo t('unread') ?><span id="nav-counter"><?php echo empty($nb_unread_items) ? '' : $nb_unread_items ?></span></a>
             </li>
+            <li<?php echo isset($menu) && $menu === 'pinned' ? ' class="active"' : '' ?>>
+                <a href="?action=pinned"><?php echo t('pinned') ?></a>
+            </li>
             <li class="hide-mobile<?php echo isset($menu) && $menu === 'bookmarks' ? ' active' : '' ?>">
                 <a href="?action=bookmarks"><?php echo t('bookmarks') ?></a>
             </li>
@@ -29,6 +32,7 @@
 <div id="menu-more" class="hide">
     <ul>
         <li<?php echo isset($menu) && $menu === 'unread' ? ' class="active"' : '' ?>><a href="?action=unread"><?= t('unread') ?></a></li>
+        <li<?php echo isset($menu) && $menu === 'pinned' ? ' class="active"' : '' ?>><a href="?action=pinned"><?= t('pinned') ?></a></li>
         <li<?php echo isset($menu) && $menu === 'bookmarks' ? ' class="active"' : '' ?>><a href="?action=bookmarks"><?= t('bookmarks') ?></a></li>
         <li<?php echo isset($menu) && $menu === 'history' ? ' class="active"' : '' ?>><a href="?action=history"><?= t('history') ?></a></li>
         <li<?php echo isset($menu) && $menu === 'feeds' ? ' class="active"' : '' ?>><a href="?action=feeds"><?= t('subscriptions') ?></a></li>

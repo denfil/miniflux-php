@@ -363,12 +363,21 @@ a.btn-red:hover,
 
 /* icons */
 article .read-icon,
-article .bookmark-icon {
+article .bookmark-icon,
+article .pin-icon{
     color: #aaa !important;
     font-weight: 200 !important;
     text-decoration: none !important;
     font-size: 1.7em;
     margin-left: 15px;
+}
+
+article[data-item-pinned="0"] .pin-icon:before {
+    content: "○";
+}
+
+article[data-item-pinned="1"] .pin-icon:before {
+    content: "●";
 }
 
 article[data-item-bookmark="0"] .bookmark-icon:before {

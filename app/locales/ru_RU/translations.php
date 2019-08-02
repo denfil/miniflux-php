@@ -283,4 +283,9 @@ return array(
     'Shaarli tags' => 'Shaarli тэги',
     'Private Bookmarks' => 'Приватные Закладки',
     'mark page as read' => 'отметить страницу как прочитанное',
+    'pin' => 'закрепить',
+    'unpin' => 'открепить',
+    'pinned' => 'закрепленное',
+    'Pinned' => 'Закрепленное',
+    'No pinned items' => 'Закрепленных статей нет',
 );
