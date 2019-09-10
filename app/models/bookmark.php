@@ -43,7 +43,7 @@ function get_bookmarked_items($user_id, $offset = null, $limit = null, array $fe
         ->join(Model\Feed\TABLE, 'id', 'feed_id')
         ->eq('items.user_id', $user_id)
         ->in('items.feed_id', $feed_ids)
-        ->neq('items.status', Model\Item\STATUS_REMOVED)
+        ->in('items.status', array(Model\Item\STATUS_READ, Model\Item\STATUS_UNREAD))
         ->eq('items.bookmark', 1)
         ->orderBy('items.updated', Helper\config('items_sorting_direction'))
         ->offset($offset)

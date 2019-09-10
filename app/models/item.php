@@ -422,7 +422,7 @@ function get_pinned_items($user_id, $offset = null, $limit = null, array $feed_i
         ->join(Model\Feed\TABLE, 'id', 'feed_id')
         ->eq('items.user_id', $user_id)
         ->in('items.feed_id', $feed_ids)
-        ->neq('items.status', STATUS_REMOVED)
+        ->in('items.status', array(STATUS_READ, STATUS_UNREAD))
         ->eq('items.pinned', 1)
         ->orderBy('items.updated', Helper\config('items_sorting_direction'))
         ->offset($offset)
